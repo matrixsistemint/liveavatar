@@ -1,0 +1,132 @@
+/* ── Live Action Page ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.liveaction-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  background: #0a0a0f;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+/* Header */
+.liveaction-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.liveaction-title {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.la-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+  animation: la-pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes la-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(34, 197, 94, 0.7); }
+  50%       { opacity: 0.6; box-shadow: 0 0 4px rgba(34, 197, 94, 0.3); }
+}
+
+.liveaction-url-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 0.35rem 0.625rem 0.35rem 0.5rem;
+  min-width: 0;
+}
+
+.liveaction-url-chip svg:first-child {
+  width: 14px;
+  height: 14px;
+  color: #a5b4fc;
+  flex-shrink: 0;
+}
+
+.liveaction-url-chip span {
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #c7d2fe;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+
+.la-open-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.la-open-btn svg { width: 12px; height: 12px; }
+.la-open-btn:hover { background: rgba(99, 102, 241, 0.3); color: #e0e7ff; }
+
+/* Iframe wrapper */
+.liveaction-frame-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.liveaction-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #000;
+  min-height: calc(100vh - 58px);
+}
+
+/* Loading */
+.liveaction-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+}
+
+.la-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top-color: #818cf8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

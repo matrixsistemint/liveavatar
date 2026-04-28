@@ -10,8 +10,7 @@ const {
 } = require('./liveavatar.controller');
 const { authenticateToken, authorizeRoles } = require('../../middleware/auth.middleware');
 
-// Semua route perlu login
-router.use(authenticateToken);
+// ── Public routes (tidak perlu login) ────────────────────────────────────────
 
 // GET  /api/liveavatar/avatars/all     — private + public merged (live dari API)
 router.get('/avatars/all', getAllAvatars);
@@ -22,13 +21,15 @@ router.get('/avatars/public', getPublicAvatars);
 // GET  /api/liveavatar/avatars/local   — baca dari tabel DB lokal
 router.get('/avatars/local', getLocalAvatars);
 
-// POST /api/liveavatar/avatars/sync    — fetch API → simpan ke DB (admin only)
-router.post('/avatars/sync', authorizeRoles('admin'), syncAvatars);
-
 // GET  /api/liveavatar/avatars         — private only (live dari API)
 router.get('/avatars', getAvatars);
 
 // GET  /api/liveavatar/avatars/:avatarId
 router.get('/avatars/:avatarId', getAvatarById);
+
+// ── Protected routes (perlu login admin) ─────────────────────────────────────
+
+// POST /api/liveavatar/avatars/sync    — fetch API → simpan ke DB (admin only)
+router.post('/avatars/sync', authenticateToken, authorizeRoles('admin'), syncAvatars);
 
 module.exports = router;

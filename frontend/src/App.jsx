@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
 import LiveAction from './pages/LiveAction';
+import LiveActionFullscreen from './pages/LiveActionFullscreen';
 import './index.css';
 
 const ProtectedLayout = ({ children, roles }) => (
@@ -44,6 +45,12 @@ function App() {
             <Route
               path="/live/:index"
               element={<PublicLayout><LiveAction /></PublicLayout>}
+            />
+            
+            {/* Live Actions Fullscreen — untuk dibuka di tab baru */}
+            <Route
+              path="/stream/:index"
+              element={<LiveActionFullscreen />}
             />
 
             {/* Admin only */}

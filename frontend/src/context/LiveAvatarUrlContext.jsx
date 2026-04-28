@@ -20,7 +20,7 @@ export const LiveAvatarUrlProvider = ({ children }) => {
   const refresh = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await api.get('/settings/liveavatar_url');
+      const res = await api.get('/settings/public/liveavatar_url');
       setUrls(parseUrls(res.data.data?.value));
     } catch {
       setUrls([]);

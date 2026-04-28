@@ -16,6 +16,10 @@ const ProtectedLayout = ({ children, roles }) => (
   </PrivateRoute>
 );
 
+const PublicLayout = ({ children }) => (
+  <AppLayout>{children}</AppLayout>
+);
+
 function App() {
   return (
     <Router>
@@ -36,10 +40,10 @@ function App() {
               element={<ProtectedLayout><Settings /></ProtectedLayout>}
             />
 
-            {/* Live Actions — dynamic per URL index */}
+            {/* Live Actions — dynamic per URL index, tapi PUBLIC (tidak butuh login) */}
             <Route
               path="/live/:index"
-              element={<ProtectedLayout><LiveAction /></ProtectedLayout>}
+              element={<PublicLayout><LiveAction /></PublicLayout>}
             />
 
             {/* Admin only */}

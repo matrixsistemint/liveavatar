@@ -177,10 +177,32 @@ const validateApiKey = async (req, res) => {
   }
 };
 
+/**
+ * GET /api/settings/public/liveavatar_urls
+ * Ambil URL LiveAvatar tanpa perlu autentikasi.
+ */
+const getPublicLiveAvatarUrls = async (req, res) => {
+  try {
+    const { rows } = await query(
+      "SELECT value FROM settings WHERE key = 'liveavatar_url' AND is_active = true"
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, message: 'Settings tidak ditemukan' });
+    }
+
+    return res.status(200).json({ success: true, data: { value: rows[0].value } });
+  } catch (error) {
+    console.error('getPublicLiveAvatarUrls error:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   getAllSettings,
   getSettingByKey,
   updateSetting,
   generateLiveAvatarApiKey,
   validateApiKey,
+  getPublicLiveAvatarUrls,
 };

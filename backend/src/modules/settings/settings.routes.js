@@ -6,11 +6,13 @@ const {
   updateSetting,
   generateLiveAvatarApiKey,
   validateApiKey,
+  getPublicLiveAvatarUrls,
 } = require('./settings.controller');
 const { authenticateToken, authorizeRoles } = require('../../middleware/auth.middleware');
 
-// Validasi API key — publik (dipakai oleh layanan eksternal)
+// Route publik
 router.post('/api-key/validate', validateApiKey);
+router.get('/public/liveavatar_url', getPublicLiveAvatarUrls);
 
 // Semua route berikut butuh login
 router.use(authenticateToken);
